@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+message Article {
+    //Id of the Article
+    string id = 1;
+    string title = 2;
+    string body = 3;
+    string postImage = 4;
+}
+
+message Empty {}
+
+message ArticlesList {
+    // The List of articles
+    repeated Article articles = 1;
+}
+
+message SingleArticle {
+    //The Id of the article to get
+    string articleId = 1;
+}
+
+service ArticleService {
+    //gets all the articles 
+    rpc GetAllArticles (Empty) returns (ArticlesList) {}
+    //accepts an articleId to return the article objects
+    rpc GetSingleArticle (SingleArticle) returns (Article) {}
+}
